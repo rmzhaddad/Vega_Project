@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Vehicle_Project_CodeWithMosh.Persistence;
+using AutoMapper;
 
 namespace Vehicle_Project_CodeWithMosh
 {
@@ -21,7 +24,10 @@ namespace Vehicle_Project_CodeWithMosh
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {
+            services.AddAutoMapper();
+
+            services.AddDbContext<VegaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             // add framework services
             services.AddMvc();
         }
