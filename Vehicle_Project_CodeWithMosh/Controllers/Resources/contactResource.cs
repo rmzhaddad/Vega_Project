@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vehicle_Project_CodeWithMosh.Controllers.Resources
 {
-    public partial class VehicleResource
+    public partial class SaveVehicleResource
     {
         public class contactResource
         {

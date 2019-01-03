@@ -9,10 +9,10 @@ import { VehicleService } from '../../services/vehicle.service';
 })
 /** Vehicle component*/
 export class VehicleComponent implements OnInit {
-    makes: any[];
+    makes: any[] =[];
     vehicle: any = {};
-    models: any[];
-    features: any[];
+    models: any[]=[];
+    features: any[] = [];
 
     /** Vehicle ctor */
     constructor(private VehicleService: VehicleService)

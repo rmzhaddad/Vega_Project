@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Vehicle_Project_CodeWithMosh.Models;
 
 namespace Vehicle_Project_CodeWithMosh.Controllers.Resources
 {
-    public partial class VehicleResource
+    public class VehicleResource
     {
-
         public int ID { get; set; }
-        public int ModelId { get; set; }
-     
+      
+        public KeyValuePairResource Model { get; set; }
+        public KeyValuePairResource Make { get; set; }
         public bool IsRegistered { get; set; }
-        
-       
-        public ICollection<int> Features { get; set; }
 
-        public contactResource Contact { get; set; }
+        public SaveVehicleResource.contactResource Contact { get; set; }
+      
+        public DateTime LastUpdate { get; set; }
+        public ICollection<KeyValuePairResource> Features { get; set; }
 
         public VehicleResource()
         {
-            Features = new Collection<int>();
+            Features = new Collection<KeyValuePairResource>();
         }
     }
 }
