@@ -10,9 +10,13 @@ import { VehicleService } from '../../services/vehicle.service';
 /** Vehicle component*/
 export class VehicleComponent implements OnInit {
     makes: any[] =[];
-    vehicle: any = {};
     models: any[]=[];
     features: any[] = [];
+    vehicle: any = {
+        features: [],
+        contact: {}
+    };
+    
 
     /** Vehicle ctor */
     constructor(private VehicleService: VehicleService)
@@ -25,7 +29,23 @@ export class VehicleComponent implements OnInit {
         
     }
     onMakeChange() {// console.log("VEHICLE", this.vehicle); used to check this functionality of function 
-        var selectedMake = this.makes.find(m => m.id == this.vehicle.make);
+        var selectedMake = this.makes.find(m => m.id == this.vehicle.makeId);
         this.models = selectedMake ? selectedMake.models : [];
+        delete this.vehicle.modelId;
     }
+    onFeatureToggle(featureId: any, $event: { target: { checked: any; }; }) {
+        if ($event.target.checked)
+            this.vehicle.features.push(featureId);
+        else
+        {
+            var index = this.vehicle.features.indexOf(featureId);
+            this.vehicle.features.splice(index, 1);
+        }
+    }
+    submit() {
+
+        this.VehicleService.create(this.vehicle).subscribe(x => console.log(x));
+
+    }
+
 }
