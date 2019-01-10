@@ -35,6 +35,7 @@ namespace Vehicle_Project_CodeWithMosh.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatVehicle([FromBody]SaveVehicleResource vehicleResource)
         {
+            throw new Exception();
             if (!ModelState.IsValid)
             return BadRequest(ModelState);
 

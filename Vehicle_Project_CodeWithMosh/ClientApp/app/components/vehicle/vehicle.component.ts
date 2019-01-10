@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../../services/vehicle.service';
+import { ToastyService } from 'ng2-toasty';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class VehicleComponent implements OnInit {
     
 
     /** Vehicle ctor */
-    constructor(private VehicleService: VehicleService)
+    constructor(private VehicleService: VehicleService, private toastyService: ToastyService)
         {
         
     }
@@ -44,7 +45,23 @@ export class VehicleComponent implements OnInit {
     }
     submit() {
 
-        this.VehicleService.create(this.vehicle).subscribe(x => console.log(x));
+        this.VehicleService.create(this.vehicle)
+            .subscribe(
+                x => console.log(x),
+            err => {
+                this.toastyService.error({
+                    title: 'error',
+                    msg: 'An unexpected error happened',
+                    theme: 'bootstrap',
+                    showClose: true,
+                    timeout:5000
+
+                });
+            }
+
+        );
+
+
 
     }
 
